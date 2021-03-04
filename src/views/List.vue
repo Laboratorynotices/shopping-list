@@ -28,6 +28,21 @@
                 {{ item.title }}
               </v-list-item-title>
             </v-list-item-content>
+
+            <div class="v-list-item__action">
+              <button
+                type="button"
+                class="v-btn v-btn--icon v-btn--round theme--light v-size--default"
+                @click.stop="deleteItem(item.id)"
+              >
+                <span class="v-btn__content">
+                  <i
+                    aria-hidden="true"
+                    class="v-icon notranslate mdi mdi-delete theme--light grey--text text--lighten-1"
+                  />
+                </span>
+              </button>
+            </div>
           </template>
         </v-list-item>
         <v-divider />
@@ -70,6 +85,11 @@ export default {
       const item = this.shoppingList.filter(item => item.id === id)[0]
       // Изменяем статус покупки
       item.bought = !item.bought
+    },
+    deleteItem (id) {
+      // перебираем все элементы в списке и смотрим,
+      // чтобы id его не сходился с той, что надо убрать.
+      this.shoppingList = this.shoppingList.filter(item => item.id !== id)
     }
   }
 }
