@@ -11,6 +11,7 @@
       >
         <v-list-item
           @click="doneBought(item.id)"
+          :class="{ 'blue lighten-5' : item.bought }"
         >
           <template>
             <v-list-item-action>
@@ -21,7 +22,11 @@
             </v-list-item-action>
 
             <v-list-item-content>
-              <v-list-item-title>{{ item.title }} </v-list-item-title>
+              <v-list-item-title
+                :class="{ 'text-decoration-line-through' : item.bought }"
+              >
+                {{ item.title }}
+              </v-list-item-title>
             </v-list-item-content>
           </template>
         </v-list-item>
