@@ -9,11 +9,13 @@
         v-for="item in shoppingList"
         :key="item.id"
       >
-        <v-list-item>
-          <template v-slot:default="{ active, }">
+        <v-list-item
+          @click="doneBought(item.id)"
+        >
+          <template>
             <v-list-item-action>
               <v-checkbox
-                :input-value="active"
+                :input-value="item.bought"
                 color="primary"
               />
             </v-list-item-action>
@@ -40,19 +42,30 @@ export default {
     shoppingList: [
       {
         id: 1,
-        title: 'Muesli'
+        title: 'Muesli',
+        bought: false
       },
       {
         id: 2,
-        title: 'Milk'
+        title: 'Milk',
+        bought: false
       },
       {
         id: 3,
-        title: 'Aple'
+        title: 'Aple',
+        bought: false
       }
     ]
   }),
   components: {
+  },
+  methods: {
+    doneBought (id) {
+      // в списке покупок ищем нужную запись
+      const item = this.shoppingList.filter(item => item.id === id)[0]
+      // Изменяем статус покупки
+      item.bought = !item.bought
+    }
   }
 }
 </script>
