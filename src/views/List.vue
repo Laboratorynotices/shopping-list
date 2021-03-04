@@ -5,7 +5,7 @@
       label="Add item"
       append-icon="mdi-cart-plus"
       clearable
-      v-bind="newItemTitle"
+      v-model="newItemTitle"
       @click:append="addNewItem"
       @keyup.enter="addNewItem"
     />
@@ -113,6 +113,7 @@ export default {
      * Добавляем новый элемент
      */
     addNewItem () {
+      console.log(this.newItemTitle)
       // Создаём новый элемент с правильной структурой
       const newItem = {
         id: Date.now(),
